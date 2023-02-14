@@ -1,0 +1,5 @@
+.bg{text-align: center;min-height: 750px; background-image: linear-gradient(to right, #182e46, #1f3952, #182e46, #1f3952, #182e46);padding: 0;margin: 0;position:relative;}
+h1{color: white;position: absolute;top: 50%;transform: translate(-50%, -50%);margin: auto;left: 50%;font-size: calc(3.5*3vw);}
+body{
+    background-image: linear-gradient(#e66456, #ff5482);
+}
