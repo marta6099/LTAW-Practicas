@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
           //-- Lectura asíncrona
           fs.readFile(pag_error,(error,page) => {
               res.writeHead(404, {'Content-Type': mime});
-              res.write(page);
+              res.write();
               res.end();    
           });
       }; 
