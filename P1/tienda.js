@@ -22,9 +22,14 @@ const server = http.createServer((req, res) => {
 
     // Creamos una variable vacia para almacenar las peticiones
     let recurso = "";
-    
-
-  });
+    if(myURL.pathname == '/'){
+      recurso += pagina
+    }
+      else {
+        code = 404;
+        code_msg = "Not found"
+        page =  pag_error;
+    };
 
 
   
