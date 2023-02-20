@@ -3,11 +3,10 @@
 //Importamos módulos y definimos puerto
 const http = require('http');
 const fs = require('fs');
-const url = require('url');
+
 const PUERTO = 9000;
 
-//-- Construir un objeto URL
-//const myURL = new URL(req.url, 'http://' + req.headers['host']);;
+
 //-- Creamos el servidor. 
 const pagina = 'tienda.html';
 const pag_error = 'error.html';
@@ -21,6 +20,9 @@ const server = http.createServer((req, res) => {
     let myURL = new URL(req.url, 'http://' + req.headers['host'])
     console.log("Esta es tu url! "+ myURL.href);
 
+    // Creamos una variable vacia para almacenar las peticiones
+    let recurso = "";
+    
 
   });
 
