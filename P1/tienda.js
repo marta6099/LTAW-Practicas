@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
           //-- 404 ERROR
           console.log("404 ERROR");
           //-- Lectura asíncrona
-          fs.readFile(PAG_ERR,(error,page) => {
+          fs.readFile(pag_error,(error,page) => {
               res.writeHead(404, {'Content-Type': mime});
               res.write(page);
               res.end();    
