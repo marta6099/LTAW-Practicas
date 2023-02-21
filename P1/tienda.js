@@ -29,6 +29,7 @@ const server = http.createServer((req, res) => {
     }
     else{
       recurso += myURL.pathname.substring(1);
+      console.log("hola " + recurso)
       
     }
     fs.stat(recurso, error => {    
@@ -48,7 +49,7 @@ const server = http.createServer((req, res) => {
           //-- Lectura asíncrona
           fs.readFile(pag_error,(error,page) => {
               res.writeHead(404, {'Content-Type': mime});
-              res.write();
+              res.write(page);
               res.end();    
           });
       }; 
