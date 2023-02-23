@@ -1,5 +1,7 @@
-.bg{text-align: center;min-height: 1000px; background-image: linear-gradient(to right,#1f3952, #6498ED, #00ced1,#ADD8E6, #E0FFFF);padding: 0;margin: 0;position:relative;}
+.bg{text-align: center;min-height: 1000px; background-image: linear-gradient(to right,hsl(209, 45%, 22%), #6498ED, #00ced1,#ADD8E6, #E0FFFF);padding: 0;margin: 0;position:relative;}
+.bg1{text-align: center;min-height: 1000px; background-image: linear-gradient(to right,#64c244, #249d1f, #44ba1c,#23c749, #1f8012);padding: 0;margin: 0;position:relative;}
 h1{color: white;position: absolute;top: 50%;transform: translate(-50%, -50%);margin: auto;left: 50%;font-size: calc(3.5*3vw);}
 body{
     background-image: linear-gradient(#6498ED, #7fffd4);
 }
+.img{ display: block; margin: 0 auto; max-width: 90%; height: auto;}
