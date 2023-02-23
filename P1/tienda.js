@@ -8,7 +8,7 @@ const PUERTO = 9000;
 // Definición de archivos
 const pagina = 'tienda.html';
 const pag_error = 'error.html';
-const favicon = 'favicon.ico';
+const favicon = 'favicon-16x16.png';
 
 // Definición de tipos MIME
 const mime = {
