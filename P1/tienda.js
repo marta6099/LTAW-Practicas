@@ -8,6 +8,7 @@ const PUERTO = 9000;
 // Definición de archivos
 const pagina = 'tienda.html';
 const pag_error = 'error.html';
+const favicon = 'favicon.ico';
 
 // Definición de tipos MIME
 const mime = {
@@ -19,6 +20,12 @@ const mime = {
   "ico": "image/ico",
   "css": "text/css",
 };
+
+// Lectura sincrónica del favicon
+const faviconData = fs.readFileSync(favicon);
+
+// Definimos el tipo MIME del favicon
+const faviconType = mime[favicon.split('.').pop()];
 
 // Creamos el servidor
 const server = http.createServer((req, res) => {
@@ -38,6 +45,15 @@ const server = http.createServer((req, res) => {
   } else {
     recurso += myURL.pathname.substring(1);
     console.log("hola " + recurso);
+  }
+
+  if (myURL.pathname == '/favicon.ico') {
+    // Petición 200 OK
+    res.writeHead(200, {'Content-Type': faviconType});
+    console.log("Petición 200 OK para favicon");
+    res.write(faviconData);
+    res.end();
+    return;
   }
 
   fs.stat(recurso, (error, stats) => {
