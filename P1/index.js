@@ -1,56 +1,66 @@
-// Practica 1
+// Practica 1. Tienda
 
+// Importamos módulos y definimos puerto
 const http = require('http');
-const fs = require('fs'); // pARA ACCEDER A LOS FICHEROS DE NUESTRO ORDENADOR
-
+const fs = require('fs');
 const PUERTO = 9000;
-//Realizamos la lectura del documento.
-const indice = fs.readFileSync('tienda.html','utf8')
-const page_error = fs.readFileSync('error.html','utf8')
-//-- Texto HTML
-const recurso = ""
-const server = http.createServer((req, res)=>{
-    console.log("Petición recibida!");
-    //-- Valores de la respuesta por defecto
-    let code = 200;
-    let code_msg = "OK";
-    let page = indice;
 
-    //-- Analizar el recurso
-    //-- Construir el objeto url con la url de la solicitud
+// Definición de archivos
+const pagina = 'tienda.html';
+const pag_error = 'error.html';
 
-    const url = new URL(req.url, 'http://' + req.headers['host']);
-    console.log(url.pathname);
+// Definición de tipos MIME
+const mime = {
+  "html": "text/html",
+  "jpeg": "image/jpeg",
+  "jpg": "image/jpg",
+  "png": "image/png",
+  "PNG": "image/PNG",
+  "ico": "image/ico",
+  "css": "text/css",
+};
 
-    //-- Cualquier recurso que no sea la página principal
-    //-- genera un error
-    if (url.pathname == '/') {
-        recurso += indice;
-        console.log(recurso);
+// Creamos el servidor
+const server = http.createServer((req, res) => {
+  // Indicamos que se ha recibido una petición
+  console.log("Petición recibida!");
+
+  // Construimos la URL para posteriormente mostrar su URL
+  let myURL = new URL(req.url, 'http://' + req.headers['host'])
+  console.log("Esta es tu url! " + myURL.href);
+
+  // Creamos una variable vacia para almacenar las peticiones
+  let recurso = "";
+
+  if (myURL.pathname == '/') {
+    recurso += pagina;
+    console.log(recurso);
+  } else {
+    recurso += myURL.pathname.substring(1);
+    console.log("hola " + recurso);
+  }
+
+  fs.stat(recurso, (error, stats) => {
+    if (!error) {
+      // Lectura asíncrona
+      fs.readFile(recurso, (error, page) => {
+        // Petición 200 OK
+        res.writeHead(200, {'Content-Type': mime[recurso.split('.').pop()]});
+        console.log("Petición 200 OK");
+        res.write(page);
+        res.end();
+      }); 
+    } else {
+      // Lectura asíncrona
+      fs.readFile(pag_error, (error, page) => {
+        res.writeHead(404, {'Content-Type': mime['html']});
+        res.write(page);
+        res.end();    
+      }); 
     }
-    else {
-        recurso += myURL.pathname.substring(1);
-        console.log("hola " + recurso)
-    }
-    fs.stat(recurso, error => {  
-        fs.readFile(pag_error,(error,page) => {
-              res.writeHead(404, {'Content-Type': mime});
-              res.write(page);
-              res.end(); 
-        });
-    });
-
-
-
-    //-- Generar la respusta en función de las variables
-    //-- code, code_msg y pag
-    res.statusCode = 200;
-    res.statusMessage = "OK";
-    res.setHeader('Content-Type','text/html');
-    res.write(pagina);
-    res.end();
+  });
 });
 
+// El servidor escucha, y pasamos una línea que nos lo muestre y además nos diga el puerto.
 server.listen(PUERTO);
-
-console.log("Ejemplo 6. Happy Server HTML!. Escuchando en puerto: " + PUERTO);
+console.log("Servidor activado. Escuchando en puerto " + PUERTO);
