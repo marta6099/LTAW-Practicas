@@ -16,6 +16,12 @@ const server = http.createServer((req, res) => {
     //-- Indicamos que se ha recibido una petición
     console.log("Petición recibida!");
 
+    res.statusCode = 200;
+    res.statusMessage = "OK";
+    res.setHeader('Content-Type','text/html');
+    res.write(pagina);
+    res.end();
+    
     //Construimos la url para posteriormente mostrar su URL
     let myURL = new URL(req.url, 'http://' + req.headers['host'])
     console.log("Esta es tu url! "+ myURL.href);
