@@ -20,7 +20,7 @@ const mime = {
   "ico": "image/ico",
   "css": "text/css",
 };
-// Función para obtener el tipo MIME de un archivo
+/* // Función para obtener el tipo MIME de un archivo
 function getMimeType(file) {
   const extension = file.split('.').pop();
   return mime[extension] || 'text/plain';
@@ -62,7 +62,7 @@ function renderItems() {
   });
 }
 
-renderItems();
+renderItems(); */
 
 
 // Lectura sincrónica del favicon
