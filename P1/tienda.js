@@ -20,50 +20,6 @@ const mime = {
   "ico": "image/ico",
   "css": "text/css",
 };
-/* // Función para obtener el tipo MIME de un archivo
-function getMimeType(file) {
-  const extension = file.split('.').pop();
-  return mime[extension] || 'text/plain';
-}
-
-// Añdimos articulos
-const items = [
-  {
-    name: "Zapatos de tacon",
-    image: "tacon.JPG",
-    description: "Zapatos de Tacon",
-    price: 35.00
-  }
-];
-function renderItems() {
-  const container = document.querySelector(".items-container");
-  items.forEach(item => {
-    const div = document.createElement("div");
-    div.classList.add("item");
-
-    const img = document.createElement("img");
-    img.src = item.image;
-
-    const h3 = document.createElement("h3");
-    h3.innerText = item.name;
-
-    const p = document.createElement("p");
-    p.innerText = item.description;
-
-    const span = document.createElement("span");
-    span.innerText = "$" + item.price.toFixed(2);
-
-    div.appendChild(img);
-    div.appendChild(h3);
-    div.appendChild(p);
-    div.appendChild(span);
-
-    container.appendChild(div);
-  });
-}
-
-renderItems(); */
-
 
 // Lectura sincrónica del favicon
 const faviconData = fs.readFileSync(favicon);
