@@ -1,0 +1,24 @@
+.bg {
+    text-align: center;
+    min-height: 1000px;
+    background-image: linear-gradient(to right, #64c244, #249d1f, #44ba1c, #23c749, #1f8012);
+    padding: 0;
+    margin: 0;
+    position: relative;
+    }
+button {
+        display: block;
+        margin: 0 auto;
+        background-color: #02490b;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+button:hover {
+        background-color: #fff;
+        color: #12b620;
+        border: 1px solid #145002;
+    }
