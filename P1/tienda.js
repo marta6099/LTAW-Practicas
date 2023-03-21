@@ -19,6 +19,7 @@ const mime = {
   "PNG": "image/PNG",
   "ico": "image/ico",
   "css": "text/css",
+  "gif": "image/gif"
 };
 
 // Lectura sincrónica del favicon
