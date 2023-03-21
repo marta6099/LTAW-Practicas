@@ -1,4 +1,4 @@
-* Estilos para la tabla de tallas */
+/*Estilos para la tabla de tallas */
 #tallas {
   border-collapse: collapse;
   width: 100%;
@@ -50,4 +50,13 @@ button:hover {
     background-color: #fff;
     color: #db4d48;
     border: 1px solid #ee3131;
+}
+.imagen {
+  text-align: center;
+}
+
+.imagen img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
