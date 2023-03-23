@@ -1,0 +1,79 @@
+.bg {
+    text-align: center;
+    min-height: 100%;
+    background-image: linear-gradient(to right, hsl(323, 46%, 55%), #ed64d2, #d10088, #e6add5, #ffe0f9);
+    padding: 0;
+    margin: 0;
+    position: relative;
+    }
+  /*Estilos para la tabla de tallas */
+  #tallas {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  #tallas th {
+    background-color: #f8f8f8;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #tallas td {
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #tallas tbody tr:hover {
+    background-color: #f4f4f4;
+  }
+  
+  @media screen and (max-width: 600px) {
+    #tallas {
+      overflow-x: auto;
+    }
+  }
+  
+  button {
+      display: block;
+      margin: 0 auto;
+      background-color: #44002d;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  button:hover {
+      background-color: #fff;
+      color: #db48d1;
+      border: 1px solid #c231ee;
+  }
+  .imagen {
+    text-align: center;
+  }
+  
+  .imagen img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  table img {
+    width: 200%;
+    max-width: 350px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  table img:hover {
+    transform: scale(1.1);
+  }
