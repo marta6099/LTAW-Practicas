@@ -1,4 +1,4 @@
-// Practica 2. Tienda
+// Practica 1. Tienda
 
 // Importamos módulos y definimos puerto
 const http = require('http');
@@ -19,8 +19,7 @@ const mime = {
   "PNG": "image/PNG",
   "ico": "image/ico",
   "css": "text/css",
-  "gif": "image/gif",
-  "json": "aplication/json"
+  "gif": "image/gif"
 };
 
 // Lectura sincrónica del favicon
@@ -78,24 +77,7 @@ const server = http.createServer((req, res) => {
     }
   });
 });
-function agregarAlCarrito() {
-  // Obtener la información del producto
-  var producto = document.getElementById("producto").innerHTML;
 
-  // Agregar el producto al carrito
-  productosEnCarrito.push(producto);
-
-  // Mostrar una alerta para confirmar que el producto se ha agregado al carrito
-  alert("El producto se ha agregado al carrito");
-}
-function toggleMenu() {
-  const menu = document.getElementById("menu");
-  if (menu.style.display === "none") {
-    menu.style.display = "block";
-  } else {
-    menu.style.display = "none";
-  }
-}
 // El servidor escucha, y pasamos una línea que nos lo muestre y además nos diga el puerto.
 server.listen(PUERTO);
 console.log("Servidor activado. Escuchando en puerto " + PUERTO);
