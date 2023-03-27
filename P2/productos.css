@@ -1,0 +1,49 @@
+/* CSS styles for background and heading */
+.bg {
+    text-align: center;
+    min-height: 100%;
+    background-image: linear-gradient(to right, hsl(209, 45%, 22%), #6498ED, #00ced1, #ADD8E6, #E0FFFF);
+    padding: 0;
+    margin: 0;
+    position: relative;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-top: 100px;
+        font-size: 50px;
+        color: #333;
+        text-shadow: 2px 2px #ddd;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+        background-color: #191970;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    button:hover {
+        background-color: #fff;
+        color: #191970;
+        border: 1px solid #191970;
+    }
+    table {
+        width: 90%;
+        height: auto;
+    }
+    
+    th {
+        width: 33%;
+        height: 33%;
+    }
+    
+    img {
+        width: 70%;
+        height: auto;
+        object-fit: cover;
+    }
