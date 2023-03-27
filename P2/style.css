@@ -84,14 +84,24 @@ body {
     background-color: #f4f4f4;
     padding: 70px;
     border: 1px solid #ccc;
+    z-index: 2;
   }
   
   #menu li {
     list-style: none;
     margin: 70px 0;
+    display: inline-block;
   }
   
   #menu li a {
-    color: #333;
+    display: block;
+    padding: 10px;
     text-decoration: none;
+    color: #333;
+    font-weight: bold;
   }
+  /* Estilos para el menú */
+
+#menu li a:hover {
+  background-color: #f2f2f2;
+}
