@@ -7,7 +7,7 @@
     margin: 0;
     position: relative;
     }
-    
+   
     h1 {
         text-align: center;
         margin-top: 100px;
@@ -32,10 +32,24 @@
         color: #191970;
         border: 1px solid #191970;
     }
+    body {
+        background-color: #ffffff4c;
+        margin: 0;
+        padding: 0;
+      }
     table {
         width: 90%;
         height: auto;
     }
+    table img {
+        width: 100%;
+        max-width: 300px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      table img:hover {
+        transform: scale(1.1);
+      }
     
     th {
         width: 33%;

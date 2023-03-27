@@ -1,0 +1,55 @@
+/* Estilo para el fondo */
+.bg {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Estilo para el título */
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #191970;
+  margin-top: 0;
+}
+
+/* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+/* Estilo para las celdas de la tabla */
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Estilo para las imágenes de la tabla */
+table img {
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+table img:hover {
+  transform: scale(1.1);
+}
+
+/* Estilo para el botón de volver */
+button {
+  display: block;
+  margin: 50px auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: #191970;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}

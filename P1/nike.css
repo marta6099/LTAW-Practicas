@@ -1,3 +1,11 @@
+.bg {
+  text-align: center;
+  min-height: 100%;
+  background-image: linear-gradient(to right, hsl(359, 46%, 55%), #ed6474, #d10011, #e6adad, #ffe0e0);
+  padding: 0;
+  margin: 0;
+  position: relative;
+  }
 /*Estilos para la tabla de tallas */
 #tallas {
   border-collapse: collapse;
@@ -59,4 +67,13 @@ button:hover {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
+}
+table img {
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+table img:hover {
+  transform: scale(1.1);
 }
