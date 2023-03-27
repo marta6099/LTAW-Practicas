@@ -10,59 +10,64 @@
 </head>
 <body>
     <div class="bg">
-        <h1 style="color: #191970">Zapatique</h1>
+        <h1 style="color: #270000">Zapatique</h1>
     </div>
 
-<table>
-    <tr>
-      <th class = "imagen" ><img src="/imagenes/Nike/nike1.png" alt="nike"></img></th>
-      <th class = "imagen" ><img  src="/imagenes/Nike/nike2.png" alt="nike"></img></th>
-      <th class = "imagen" ><img src="/imagenes/Nike/nike3.png" alt="nike"></img></th>
-    </tr>
-  </table>
-  <p id="producto" >Air Jordan 1 para mujer</p>
-  <p>Medium Grey</p>
-  <p style="background-color: red;">129,99€</p>
-  <a>Da un toque icónico a todas tus pisadas con las Air Jordan 1.
-    La piel clásica en gris medio se combina con los detalles de la piel de poni por toda la prenda,
-    mientras que los detalles como el logotipo Wings en plata metalizado añaden un aire premium a cualquier look. 
-    El diseño se completa con la amortiguación Air en la planta del pie para mantener el ritmo y la comodidad, para que nada te impida lucir un estilo legendario.
-  </a>
-  <p>Compara precios no encontraras ninguno más barato.</p>
-  <table id="tallas">
-    <thead>
-      <tr>
-        <th>Talla</th>
-        <th>Talla</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>36</td>
-        <td>40</td>
-      </tr>
-      <tr>
-        <td>37</td>
-        <td>41</td>
-      </tr>
-      <tr>
-        <td>38</td>
-        <td>42</td>
-      </tr>
-      <tr>
-        <td>39</td>
-        <td>43</td>
-      </tr>
-    </tbody>
-  </table>
-<br>
-<a href="https://www.idealo.es/precios/202269306/nike-air-jordan-1-mid-women-medium-grey.html"><button>Compara</button></a>
-<p>
-<a href="tienda.html"><button>Volver a la página principal</button></a>
-<a href="producto3.html"><button>Deportivas</button></a>
-<img class="carrito-img" onclick="agregarAlCarrito()" src="/iconos/carrito.png" alt="zapato 1">
+    <table>
+        <tr>
+            <th class="imagen"><img src="/imagenes/Nike/nike1.png" alt="nike"></th>
+            <th class="imagen"><img src="/imagenes/Nike/nike2.png" alt="nike"></th>
+            <th class="imagen"><img src="/imagenes/Nike/nike3.png" alt="nike"></th>
+        </tr>
+    </table>
+    <p>Air Jordan 1 para mujer</p>
+    <p>Medium Grey</p>
+    <p style="background-color: red;">129,99€</p>
+    <a>Da un toque icónico a todas tus pisadas con las Air Jordan 1.
+        La piel clásica en gris medio se combina con los detalles de la piel de poni por toda la prenda,
+        mientras que los detalles como el logotipo Wings en plata metalizado añaden un aire premium a cualquier look. 
+        El diseño se completa con la amortiguación Air en la planta del pie para mantener el ritmo y la comodidad, para que nada te impida lucir un estilo legendario.
+    </a>
+    <p>Compara precios no encontrarás ninguno más barato.</p>
+    <table id="tallas">
+        <thead>
+            <tr>
+                <th>Talla</th>
+                <th>Talla</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>36</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>37</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td>43</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>  
+    <a href="https://www.idealo.es/precios/202269306/nike-air-jordan-1-mid-women-medium-grey.html"><button>Compara</button></a>
+    <p>
+        <a href="tienda.html"><button>Volver a la página principal</button></a>
+        <br>
+        <a href="producto3.html"><button>Deportivas</button></a>
+    </p>
+    <img class="carrito-img" onclick="agregarAlCarrito()" src="/iconos/carrito.png" alt="zapato 1">
+    <span id="contador-carrito">0</span>
 </p>
 <script>
+var productosEnCarrito = [];
 function agregarAlCarrito() {
   // Obtener la información del producto
   var producto = document.getElementById("producto").innerHTML;
@@ -70,9 +75,14 @@ function agregarAlCarrito() {
   // Agregar el producto al carrito
   productosEnCarrito.push(producto);
 
+  // Actualizar el contador del carrito
+  var contador = document.getElementById("contador-carrito");
+  contador.innerHTML = productosEnCarrito.length;
+
   // Mostrar una alerta para confirmar que el producto se ha agregado al carrito
   alert("El producto se ha agregado al carrito");
 }
+
 </script>
 </body>
 </html>
