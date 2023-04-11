@@ -133,7 +133,6 @@ req.on('end', () => {
 
   // Verificar si el usuario existe y las credenciales son correctas
   const usuario = usuarios.find(u => u.correo === correo && u.contrasena === contrasena);
-
  
 });
 
