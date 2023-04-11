@@ -135,6 +135,7 @@ req.on('end', () => {
   const usuario = usuarios.find(u => u.correo === correo && u.contrasena === contrasena);
  
 });
+};
 
 // El servidor escucha, y pasamos una línea que nos lo muestre y además nos diga el puerto.
 server.listen(PUERTO);

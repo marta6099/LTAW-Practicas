@@ -9,13 +9,22 @@
     <title>Zapatique</title>
 </head>
 <body>
-    <button onclick="toggleMenu()">Menú</button>
-    <ul id="menu">
-        <li><a href="producto1.html">Tacon</a></li>
-        <li><a href="producto2.html">Botas</a></li>
-        <li><a href="producto3.html">Deportivas</a></li>
+  <button class="menu-button" onclick="toggleMenu()">
+    <span class="top"></span>
+    <span class="middle"></span>
+    <span class="bottom"></span>
+  </button>
+  
+  <div id="menu">
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="producto3.html">Deportivas</a></li>
+      <li><a href="producto2.html">Zapatos de Tacon</a></li>
+      <li><a href="producto1.html">Zapatos planos</li>
+      <li><a href="#">Contacto</a></li>
     </ul>
-
+  </div>
+  
     <div class="bg">
         <h1 style="color: #191970">Zapatique</h1>
     </div>
