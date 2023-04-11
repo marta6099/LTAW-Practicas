@@ -6,6 +6,7 @@
     padding: 0;
     margin: 0;
     position: relative;
+    z-index: 1;
     }
     
 h1 {
@@ -84,6 +85,7 @@ body {
     background-color: #f4f4f4;
     padding: 70px;
     border: 1px solid #ccc;
+    z-index: 2;
   }
   
   #menu li {
@@ -94,4 +96,10 @@ body {
   #menu li a {
     color: #333;
     text-decoration: none;
+  }
+  #inicio {
+    width: 50px; /* Ajusta el tamaño de la imagen a 30px de ancho */
+    position: absolute; /* Coloca la imagen en una posición absoluta */
+    top: 30px; /* Posiciona la imagen 10px desde la parte superior */
+    right: 30px; /* Posiciona la imagen 10px desde la derecha */
   }
