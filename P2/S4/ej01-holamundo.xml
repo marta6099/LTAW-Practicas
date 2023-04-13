@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- esto es un comentario
+    multilinea ademas-->
+
+<tienda>
+    <producto>
+        Esto es un producto
+    </producto>
+
+    <producto>
+        y otro
+    </producto>
+
+    <producto>
+        <nombre>
+            PRODUCTO1
+        </nombre>
+    </producto>
+
+    
+</tienda>

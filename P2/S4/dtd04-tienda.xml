@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tienda [
+    <!ELEMENT tienda (producto*)>
+
+    <!ELEMENT producto (nombre, descripcion?, stock)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT descripcion (#PCDATA)>
+    <!ELEMENT stock (#PCDATA)>
+]>
+<tienda>
+    <producto>
+        <nombre>Producto1</nombre>
+        <descripcion>Un producto wapisimo</descripcion>
+        <stock>muchos</stock>
+    </producto>
+
+    <producto>
+        <nombre>Producto2</nombre>
+        <stock>Ninguno</stock>
+    </producto>
+</tienda>

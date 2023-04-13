@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tienda xmlns:t1="http://ibijuan.github.io/Tienda-1"
+        xmlns:t2="http://w3c.definitions/Store/es">
+
+    <t1:producto>
+        Esto es un producto
+    </t1:producto>
+
+    <t2:producto>
+        <nombre>PRODUCTO1</nombre>
+        <origen>algunsitio</origen>
+    </t2:producto>
+    
+</tienda>
