@@ -1,0 +1,6 @@
+{"usuarios":[{"nickname":"jgabari","nombre":"javier","mail":"jgabari@mail.com"},
+{"nickname":"cnorris","nombre":"chuck","mail":"chuck@norris.com"}],
+"productos":[{"nombre":"x100pre","descripcion":"primer disco en 2018","precio":15,"stock":4},
+{"nombre":"yhlqmdlg","descripcion":"segundo disco en 2020","precio":16,"stock":24},
+{"nombre":"elultimotourdelmundo","descripcion":"tercer disco en 2020","precio":17,"stock":44}],
+"pedidos":[{"nickname":"cnorris","direccion":"todo recto para alla","tarjeta":"123456789","producto":"x100pre"}]}
