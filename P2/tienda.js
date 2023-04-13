@@ -28,6 +28,14 @@ const mime = {
   "css": "text/css",
   "gif": "image/gif"
 };
+// Crteamos la constante para el fichero json
+const usu_registrados = 'tienda.json';
+let tienda_json = fs.readFileSync(usu_registrados);
+let tienda = JSON.parse(tienda_json);
+let tproductos =  [];
+tienda.productos.forEach((element) => {
+  tproductos.push(element.nombre);
+})
 
 // Lectura sincrónica del favicon
 const faviconData = fs.readFileSync(favicon);
@@ -37,15 +45,18 @@ const faviconType = mime[favicon.split('.').pop()];
 
 // Creamos el servidor
 const server = http.createServer((req, res) => {
-  // Indicamos que se ha recibido una petición
-  console.log("Petición recibida!");
+// Indicamos que se ha recibido una petición
+console.log("Petición recibida!");
 
-  // Construimos la URL para posteriormente mostrar su URL
-  let myURL = new URL(req.url, 'http://' + req.headers['host'])
-  console.log("Esta es tu url! " + myURL.href);
+// Construimos la URL para posteriormente mostrar su URL
+let myURL = new URL(req.url, 'http://' + req.headers['host'])
+console.log("Esta es tu url! " + myURL.href);
 
-  // Creamos una variable vacia para almacenar las peticiones
-  let recurso = "";
+// Extraer cookies
+
+
+// Creamos una variable vacia para almacenar las peticiones
+let recurso = "";
 
   if (myURL.pathname == '/') {
     recurso += pagina;
@@ -82,9 +93,11 @@ const server = http.createServer((req, res) => {
         res.end();    
       }); 
     }
-  });
+
+  }
+  );
  
-  // Registramos usuarios
+ /*  // Registramos usuarios
   if (myURL.pathname == '/registrar') {
     let contenido = '';
   //Leer los datos del formulario
@@ -107,7 +120,7 @@ req.on('end', () => {
   }
 
   // Agregar el nuevo usuario
-  usuarios.push({ nombre, apellidos, correo, contrasena });
+  USUARIOS.push({ nombre, apellidos, correo, contrasena });
   console.log('Usuario registrado:', { nombre, apellidos, correo, contrasena });
 
   // Redirigir a la página de inicio de sesión
@@ -117,12 +130,14 @@ req.on('end', () => {
 
 return;
   }
+
 // Inicio de sesión
 if (myURL.pathname == '/iniciar-sesion') {
   let contenido = '';
 // Leer los datos del formulario
 req.on('data', data => {
   contenido += data;
+
 });
 
 // Procesar los datos del formulario
@@ -132,10 +147,14 @@ req.on('end', () => {
   const contrasena = datos.get('contrasena');
 
   // Verificar si el usuario existe y las credenciales son correctas
-  const usuario = usuarios.find(u => u.correo === correo && u.contrasena === contrasena);
+  const USUARIOS = USUARIOS.find(u => u.correo === correo && u.contrasena === contrasena);
  
 });
-};
+}; */
+
+
+});
+
 
 // El servidor escucha, y pasamos una línea que nos lo muestre y además nos diga el puerto.
 server.listen(PUERTO);
