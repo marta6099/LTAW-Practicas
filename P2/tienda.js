@@ -53,7 +53,29 @@ let myURL = new URL(req.url, 'http://' + req.headers['host'])
 console.log("Esta es tu url! " + myURL.href);
 
 // Extraer cookies
+let content =  PRUEBA_HTML.replace('HTML_EXTRA', '');
+const cookie = req.headers.cookie;
+    if (cookie) {
 
+        let pares = cookie.split(';');
+
+        let user;
+
+        pares.forEach((element, index) => {
+
+            let [nombre, valor] = element.split('=');
+
+            if (nombre.trim() === 'user') {
+                user = valor;
+            }
+        });
+
+        if (user) {
+            
+            console.log('user: ' + user);
+            content = PRUEBA_HTML.replace('HTML_EXTRA', '<h2>Usuario: ' + user + '</h2>');
+        }
+    }
 
 // Creamos una variable vacia para almacenar las peticiones
 let recurso = "";
