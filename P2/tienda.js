@@ -86,7 +86,7 @@ const cookie = req.headers.cookie;
     let content_type = 'text/html';
     let content = FORMULARIO;
 
-    if (myURL.pathname == '/procesar') {
+    if (myURL.pathname == '/registrar') {
         content_type = 'text/html';
 
         content = RESPUESTA.replace('NOMBRE', nombre);
