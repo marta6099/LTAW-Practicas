@@ -9,13 +9,14 @@ const PUERTO = 9000;
 const pagina = 'tienda.html';
 const pag_error = 'error.html';
 const favicon = 'favicon-16x16.png';
-const USUARIOS = {
-  "Marta6099" : "12345marta"
-};
+
+// Cookies
+let cookie = '';
+const PRUEBA_HTML = fs.readFileSync('cookie.html', 'utf-8');
 
 //-- Cargar pagina web del formulario
-const FORMULARIO = fs.readFileSync('inicio.html','utf-8');
-
+const FORMULARIO = fs.readFileSync('inicio.html', 'utf-8');
+const RESPUESTA = fs.readFileSync('usuario.html', 'utf-8');
 
 // Definición de tipos MIME
 const mime = {
@@ -53,7 +54,7 @@ let myURL = new URL(req.url, 'http://' + req.headers['host'])
 console.log("Esta es tu url! " + myURL.href);
 
 // Extraer cookies
-let content =  PRUEBA_HTML.replace('HTML_EXTRA', '');
+// let contenido =  PRUEBA_HTML.replace('HTML_EXTRA', '');
 const cookie = req.headers.cookie;
     if (cookie) {
 
@@ -70,11 +71,32 @@ const cookie = req.headers.cookie;
             }
         });
 
-        if (user) {
+       /*  if (user) {
             
             console.log('user: ' + user);
-            content = PRUEBA_HTML.replace('HTML_EXTRA', '<h2>Usuario: ' + user + '</h2>');
+            contenido = PRUEBA_HTML.replace('HTML_EXTRA', '<h2>Usuario: ' + user + '</h2>');
+        } */
+    }
+// Para el formulario
+  let nombre = myURL.searchParams.get('nombre');
+    let apellidos = myURL.searchParams.get('apellidos');
+    console.log('  Nombre: ' + nombre);
+    console.log('  Apellidos: ' + apellidos);
+
+    let content_type = 'text/html';
+    let content = FORMULARIO;
+
+    if (myURL.pathname == '/procesar') {
+        content_type = 'text/html';
+
+        content = RESPUESTA.replace('NOMBRE', nombre);
+        content = content.replace('APELLIDOS', apellidos);
+
+        let html_extra = '';
+        if (nombre == 'Chuck' && apellidos == 'Norris') {
+            html_extra = '<h2>Chuck Norris no necesita registrarse</h2>';
         }
+        content = content.replace('HTML_EXTRA', html_extra);
     }
 
 // Creamos una variable vacia para almacenar las peticiones

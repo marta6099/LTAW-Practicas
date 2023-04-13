@@ -1,0 +1,8 @@
+{"usuarios":[{"nickname":"mgarrido","nombre":"marta","mail":"marta@mail.com"},
+{"nickname":"pamela6099","nombre":"Pamela","mail":"pamela@norris.com"}],
+"productos":[{"nombre":"tacon","descripcion":"tacon de 12cm","precio":15,"stock":4},
+{"nombre":"nike","descripcion":"nike","precio":36,"stock":24},
+{"nombre":"puma","descripcion":"puma","precio":117,"stock":44}],
+"pedidos":[{"nickname":"mgarrido","direccion":"leganes","tarjeta":"123456789","producto":"nike"}]}
+
+
