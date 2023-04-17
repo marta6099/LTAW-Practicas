@@ -79,6 +79,7 @@ const cookie = req.headers.cookie;
         nombre = apellidos;
       }
   });
+  return user || null;
   }
   else {
     console.log("Petición sin cookie");
