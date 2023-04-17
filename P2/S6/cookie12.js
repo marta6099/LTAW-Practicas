@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const PUERTO = 8080;
+const PUERTO = 9000;
 
 const PRUEBA_HTML = fs.readFileSync('prueba_html2.html', 'utf-8');
 

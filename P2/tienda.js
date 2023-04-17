@@ -52,39 +52,45 @@ console.log("Petición recibida!");
 // Construimos la URL para posteriormente mostrar su URL
 let myURL = new URL(req.url, 'http://' + req.headers['host'])
 console.log("Esta es tu url! " + myURL.href);
+let nombre = myURL.searchParams.get('nickname');
+let apellidos = myURL.searchParams.get('nombre');
 
 // Extraer cookies
 // let contenido =  PRUEBA_HTML.replace('HTML_EXTRA', '');
 const cookie = req.headers.cookie;
-    if (cookie) {
 
-        let pares = cookie.split(';');
+  if (cookie) {
+    console.log("Cookie: " + cookie);
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split(";");
+    
+    //-- Variable para guardar el usuario
+    let user;
 
-        let user;
+    //-- Recorrer todos los pares nombre-valor
+    pares.forEach((element, index) => {
 
-        pares.forEach((element, index) => {
+      //-- Obtener los nombres y valores por separado
+      let [nombre, apellidos] = element.split('=');
 
-            let [nombre, valor] = element.split('=');
+      //-- Leer el usuario
+      //-- Solo si el nombre es 'user'
+      if (nombre.trim() === 'user') {
+        nombre = apellidos;
+      }
+  });
+  }
+  else {
+    console.log("Petición sin cookie");
+  }
 
-            if (nombre.trim() === 'user') {
-                user = valor;
-            }
-        });
-
-       /*  if (user) {
-            
-            console.log('user: ' + user);
-            contenido = PRUEBA_HTML.replace('HTML_EXTRA', '<h2>Usuario: ' + user + '</h2>');
-        } */
-    }
 // Para el formulario
-  let nombre = myURL.searchParams.get('nombre');
-    let apellidos = myURL.searchParams.get('apellidos');
-    console.log('  Nombre: ' + nombre);
+
+    console.log('  Nombre o correo: ' + nombre);
     console.log('  Apellidos: ' + apellidos);
 
     let content_type = 'text/html';
-    let content = FORMULARIO;
+    /* let content = FORMULARIO;*/
 
     if (myURL.pathname == '/registrar') {
         content_type = 'text/html';
@@ -92,13 +98,26 @@ const cookie = req.headers.cookie;
         content = RESPUESTA.replace('NOMBRE', nombre);
         content = content.replace('APELLIDOS', apellidos);
 
-        let html_extra = '';
-        if (nombre == 'Chuck' && apellidos == 'Norris') {
-            html_extra = '<h2>Chuck Norris no necesita registrarse</h2>';
-        }
-        content = content.replace('HTML_EXTRA', html_extra);
-    }
-
+        
+        tienda["usuarios"].forEach(element => {
+          if (nombre == element["nickname"] && apellidos == element["nombre"]) {
+            console.log("USUARIO CORRECTO");
+            res.writeHead(302,{'location': '/tienda.html'});
+            res.end();
+            
+          }
+          else {
+          console.log("No registrado")
+          }
+        });
+      } else {
+        console.log('No entra')
+      }
+      
+      
+        
+  
+    
 // Creamos una variable vacia para almacenar las peticiones
 let recurso = "";
 
