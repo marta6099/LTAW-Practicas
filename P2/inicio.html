@@ -12,10 +12,35 @@
     <form action="/registrar" method="get">
         <p>Correo o Nombre de usuario:</p>
         <input type="text" id= 'nickname' name="nickname"/>
-        <p>Apellidos:</p>
-        <input type="text" id= 'nombre' name="nombre" />
+        <p>Contraseña:</p>
+        <input type="password" id= 'nombre' name="nombre" />
         <p></p>
           <input type="submit" value="Enviar"/>
     </form>
+    <button class="menu-button" onclick="toggleMenu()">
+        <span class="top"></span>
+        <span class="middle"></span>
+        <span class="bottom"></span>
+      </button>
+    <div id="menu">
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="producto3.html">Deportivas</a></li>
+          <li><a href="producto2.html">Zapatos de Tacon</a></li>
+          <li><a href="producto1.html">Zapatos planos</li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+    
+    <script>
+        function toggleMenu() {
+          var menu = document.getElementById("menu");
+          if (menu.style.display === "none") {
+            menu.style.display = "block";
+          } else {
+            menu.style.display = "none";
+          }
+        }
+      </script>
 </body>
 </html>

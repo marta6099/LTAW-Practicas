@@ -12,7 +12,7 @@
     <div class="bg">
         <h1 style="color: #191970">Zapatique</h1>
     </div>
-</body>
+
 
 <!-- <a href="producto3.html"><button>Deportivas</button></a> -->
 <table>
@@ -24,6 +24,31 @@
   </table>
   <br>
   <br>
-  <a href="tienda.html"><button>Volver a la página principal</button></a>
+  <a href="/"><button>Volver a la página principal</button></a>
+  <button class="menu-button" onclick="toggleMenu()">
+    <span class="top"></span>
+    <span class="middle"></span>
+    <span class="bottom"></span>
+  </button>
+<div id="menu">
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="producto3.html">Deportivas</a></li>
+      <li><a href="producto2.html">Zapatos de Tacon</a></li>
+      <li><a href="producto1.html">Zapatos planos</li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </div>
 
+<script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "none") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
+      }
+    }
+  </script>
+</body>
 </html>

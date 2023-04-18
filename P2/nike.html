@@ -66,6 +66,21 @@
     <img class="carrito-img" onclick="agregarAlCarrito()" src="/iconos/carrito.png" alt="zapato 1">
     <span id="contador-carrito">0</span>
 </p>
+<button class="menu-button" onclick="toggleMenu()">
+    <span class="top"></span>
+    <span class="middle"></span>
+    <span class="bottom"></span>
+  </button>
+<div id="menu">
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="producto3.html">Deportivas</a></li>
+      <li><a href="producto2.html">Zapatos de Tacon</a></li>
+      <li><a href="producto1.html">Zapatos planos</li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </div>
+
 <script>
 var productosEnCarrito = [];
 function agregarAlCarrito() {
@@ -82,7 +97,14 @@ function agregarAlCarrito() {
   // Mostrar una alerta para confirmar que el producto se ha agregado al carrito
   alert("El producto se ha agregado al carrito");
 }
-
+function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "none") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
+      }
+    }
 </script>
 </body>
 </html>

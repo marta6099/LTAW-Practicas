@@ -77,3 +77,98 @@
   table img:hover {
     transform: scale(1.1);
   }
+     /* Estilos para el botón del menú */
+.menu-button {
+  display: block;
+  position: fixed;
+  top: 10px;
+  left: 40px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Estilos para la línea horizontal del botón */
+.menu-button span {
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background: #000;
+  border-radius: 3px;
+  transition: transform 0.3s ease;
+}
+
+/* Estilos para la línea horizontal superior */
+.menu-button span.top {
+  top: 0;
+  left: 0;
+  transform: translateY(0);
+}
+
+/* Estilos para la línea horizontal central */
+.menu-button span.middle {
+  top: 18px;
+  left: 0;
+  transform: translateY(0);
+}
+
+/* Estilos para la línea horizontal inferior */
+.menu-button span.bottom {
+  bottom: 0;
+  left: 0;
+  transform: translateY(0);
+}
+
+/* Estilos para el menú */
+#menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+}
+
+/* Estilos para el menú cuando está desplegado */
+#menu.active {
+  right: 0;
+}
+
+/* Estilos para la lista del menú */
+#menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para los elementos de la lista del menú */
+#menu li {
+  list-style: none;
+  margin: 20px 0;
+}
+
+/* Estilos para los enlaces del menú */
+#menu li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Estilos para los enlaces del menú cuando se les da hover */
+#menu li a:hover {
+  color: #ccc;
+}
+  #inicio {
+    width: 50px; /* Ajusta el tamaño de la imagen a 30px de ancho */
+    position: absolute; /* Coloca la imagen en una posición absoluta */
+    top: 30px; /* Posiciona la imagen 10px desde la parte superior */
+    right: 30px; /* Posiciona la imagen 10px desde la derecha */
+  }
