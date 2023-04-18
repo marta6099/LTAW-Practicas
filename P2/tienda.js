@@ -34,6 +34,34 @@ const usu_registrados = 'tienda.json';
 let tienda_json = fs.readFileSync(usu_registrados);
 let tienda = JSON.parse(tienda_json);
 let tproductos =  [];
+// Extraer cookies
+function get_user(req) {
+const cookie = req.headers.cookie; // Leemos la cookie
+if (cookie) {
+  console.log("Cookie: " + cookie);
+  //-- Obtener un array con todos los pares nombre-valor
+  let pares = cookie.split(";");
+
+  //-- Variable para guardar el usuario
+  let user;
+
+  //-- Recorrer todos los pares nombre-valor
+  pares.forEach((element, index) => {
+    //-- Obtener los nombres y valores por separado
+    let [nombre, apellidos] = element.split('=');
+
+    //-- Leer el usuario
+    //-- Solo si el nombre es 'user'
+    if (nombre.trim() === 'user') {
+      user = nombre;
+    }
+  });
+  return user || null;
+} else {
+  console.log("Petición sin cookie");
+}
+}
+// SERVIDOR: Atención clientes.
 tienda.productos.forEach((element) => {
   tproductos.push(element.nombre);
 })
@@ -46,81 +74,57 @@ const faviconType = mime[favicon.split('.').pop()];
 
 // Creamos el servidor
 const server = http.createServer((req, res) => {
-// Indicamos que se ha recibido una petición
-console.log("Petición recibida!");
+  // Indicamos que se ha recibido una petición
+  console.log("Petición recibida!");
 
-// Construimos la URL para posteriormente mostrar su URL
-let myURL = new URL(req.url, 'http://' + req.headers['host'])
-console.log("Esta es tu url! " + myURL.href);
-let nombre = myURL.searchParams.get('nickname');
-let apellidos = myURL.searchParams.get('nombre');
+  // Construimos la URL para posteriormente mostrar su URL
+  let myURL = new URL(req.url, 'http://' + req.headers['host'])
+  console.log("Esta es tu url! " + myURL.href);
+  let nombre = myURL.searchParams.get('nickname');
+  let apellidos = myURL.searchParams.get('nombre');
 
-// Extraer cookies
-// let contenido =  PRUEBA_HTML.replace('HTML_EXTRA', '');
-const cookie = req.headers.cookie;
 
-  if (cookie) {
-    console.log("Cookie: " + cookie);
-    //-- Obtener un array con todos los pares nombre-valor
-    let pares = cookie.split(";");
-    
-    //-- Variable para guardar el usuario
-    let user;
+  // Para el formulario
+  console.log('  Nombre o correo: ' + nombre);
+  console.log('  Apellidos: ' + apellidos);
+  let user = get_user(req);
+  console.log("User: " + user);
 
-    //-- Recorrer todos los pares nombre-valor
-    pares.forEach((element, index) => {
+  let content_type = 'text/html';
+  let content = '';
 
-      //-- Obtener los nombres y valores por separado
-      let [nombre, apellidos] = element.split('=');
+  if (myURL.pathname == '/registrar') {
+    content_type = 'text/html';
 
-      //-- Leer el usuario
-      //-- Solo si el nombre es 'user'
-      if (nombre.trim() === 'user') {
-        nombre = apellidos;
+    content = RESPUESTA.replace('NOMBRE', nombre);
+    content = content.replace('APELLIDOS', apellidos);
+
+    tienda["usuarios"].forEach(element => {
+      if (nombre == element["nickname"] && apellidos == element["nombre"]) {
+        console.log("USUARIO CORRECTO");
+        res.writeHead(302,{'location': '/tienda.html'});
+        res.end();
+        if(user){
+          res.setHeader('Set-Cookie', "user="+ nombre);
+          res.write('/tienda.html');
+          res.end();
+        }
       }
-  });
-  return user || null;
-  }
-  else {
-    console.log("Petición sin cookie");
-  }
 
-// Para el formulario
-
-    console.log('  Nombre o correo: ' + nombre);
-    console.log('  Apellidos: ' + apellidos);
-
-    let content_type = 'text/html';
-    /* let content = FORMULARIO;*/
-
-    if (myURL.pathname == '/registrar') {
-        content_type = 'text/html';
-
-        content = RESPUESTA.replace('NOMBRE', nombre);
-        content = content.replace('APELLIDOS', apellidos);
-
-        
-        tienda["usuarios"].forEach(element => {
-          if (nombre == element["nickname"] && apellidos == element["nombre"]) {
-            console.log("USUARIO CORRECTO");
-            res.writeHead(302,{'location': '/tienda.html'});
-            res.end();
-            
-          }
-          else {
-          console.log("No registrado")
-          }
-        });
-      } else {
-        console.log('No entra')
+      else if(nombre != element["nickname"] && apellidos != element["nombre"]) {
+        console.log("No registrado");
+        res.writeHead(302,{'location': '/usuario.html'});
+        res.end();
       }
-      
-      
-        
-  
+    });
     
-// Creamos una variable vacia para almacenar las peticiones
-let recurso = "";
+  }
+  else{
+    console.log("algo");
+  } 
+
+  // Creamos una variable vacia para almacenar las peticiones
+  let recurso = "";
 
   if (myURL.pathname == '/') {
     recurso += pagina;
@@ -152,7 +156,7 @@ let recurso = "";
     } else {
       // Lectura asíncrona
       fs.readFile(pag_error, (error, page) => {
-        res.writeHead(404, {'Content-Type': mime['html']});
+        res.writeHead(404,{'Content-Type': mime['html']});
         res.write(page);
         res.end();    
       }); 
@@ -160,63 +164,6 @@ let recurso = "";
 
   }
   );
- 
- /*  // Registramos usuarios
-  if (myURL.pathname == '/registrar') {
-    let contenido = '';
-  //Leer los datos del formulario
-  req.on('data', data => {
-    contenido += data;
-  });
-  // Procesar los datos del formulario
-req.on('end', () => {
-  const datos = new URLSearchParams(contenido);
-  const nombre = datos.get('nombre');
-  const apellidos = datos.get('apellidos');
-  const correo = datos.get('correo');
-  const contrasena = datos.get('contrasena');
-
-  // Verificar si el usuario ya está registrado
-  if (USUARIOS.some(u => u.correo === correo)) {
-    res.writeHead(409, { 'Content-Type': 'text/plain' });
-    res.end('El usuario ya está registrado');
-    return;
-  }
-
-  // Agregar el nuevo usuario
-  USUARIOS.push({ nombre, apellidos, correo, contrasena });
-  console.log('Usuario registrado:', { nombre, apellidos, correo, contrasena });
-
-  // Redirigir a la página de inicio de sesión
-  res.writeHead(302, { 'Location': '/inicio-sesion' });
-  res.end();
-});
-
-return;
-  }
-
-// Inicio de sesión
-if (myURL.pathname == '/iniciar-sesion') {
-  let contenido = '';
-// Leer los datos del formulario
-req.on('data', data => {
-  contenido += data;
-
-});
-
-// Procesar los datos del formulario
-req.on('end', () => {
-  const datos = new URLSearchParams(contenido);
-  const correo = datos.get('correo');
-  const contrasena = datos.get('contrasena');
-
-  // Verificar si el usuario existe y las credenciales son correctas
-  const USUARIOS = USUARIOS.find(u => u.correo === correo && u.contrasena === contrasena);
- 
-});
-}; */
-
-
 });
 
 

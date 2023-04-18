@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-top: 50px;
+}
+
+p {
+  font-size: 2em;
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.5em;
+  background-color: #2d2abb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.5em;
+  }
+
+  button {
+    font-size: 1em;
+  }
+}
