@@ -34,6 +34,7 @@ const usu_registrados = 'tienda.json';
 let tienda_json = fs.readFileSync(usu_registrados);
 let tienda = JSON.parse(tienda_json);
 let tproductos =  [];
+
 // Extraer cookies
 function get_user(req) {
 const cookie = req.headers.cookie; // Leemos la cookie
@@ -48,19 +49,12 @@ if (cookie) {
   //-- Recorrer todos los pares nombre-valor
   pares.forEach((element, index) => {
     //-- Obtener los nombres y valores por separado
-    let [nombre, apellidos] = element.split('=');
-
-    //-- Leer el usuario
-    //-- Solo si el nombre es 'user'
-    if (nombre.trim() === 'user') {
-      user = nombre;
-    }
+    let [nombre, valor] = element.split('=');
   });
   return user || null;
-} else {
-  console.log("Petición sin cookie");
+} 
 }
-}
+
 // SERVIDOR: Atención clientes.
 tienda.productos.forEach((element) => {
   tproductos.push(element.nombre);
@@ -93,6 +87,8 @@ const server = http.createServer((req, res) => {
   let content_type = 'text/html';
   let content = '';
 
+  user_registrado = get_user(req);
+  
   if (myURL.pathname == '/registrar') {
     content_type = 'text/html';
 
