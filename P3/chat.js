@@ -58,25 +58,25 @@ app.get('/', (req, res) => {
         const comando = msg.slice(1);
         switch (comando){
           case 'help':
-            socket.emit('message', 'Comandos del chat disponibles: /help, /list, /hello, /date');
+            socket.send('Comandos del chat disponibles: /help, /list, /hello, /date');
             break;
           case 'list':
             const num_usuarios = Object.keys(connectedUsers).length;
-            socket.emit('message',`Hay ${num_usuarios} usuarios conectados`);
+            socket.send(`Hay ${num_usuarios} usuarios conectados`);
             break;
           case 'hello':
-            socket.emit('message', 'Lo primero de todo, como estan los maquinas?');
+            socket.send('Lo primero de todo, como estan los maquinas?');
           break;
           case 'date':
           const date = new Date().toLocaleDateString();
-          socket.emit('message', `La fecha actual es: ${date}`);
+          socket.send(`La fecha actual es: ${date}`);
           break;
         default:
-          socket.emit('message', `El comando "${command}" no es válido`);
+          socket.send(`El comando "${command}" no es válido`);
         }
       } else {
          // Si el mensaje no es un comando, lo reenviamos a todos los usuarios
-        io.emit('message', message);
+        io.send(msg);
       }
     }); 
   //-- Evento de desconexión
@@ -91,7 +91,7 @@ app.get('/', (req, res) => {
       console.log("Mensaje Recibido!: " + msg.blue);
   
       //-- Reenviarlo a todos los clientes conectados
-      io.send(msg);
+      /* io.send(msg); */
     });
   });
   
