@@ -11,15 +11,13 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <!-- Cliente que usa los Sockets.io-->
-  <script src="chat.js" defer></script>
+  <script src="chat-cliente.js" defer></script>
 </head>
 
 <body>
   <h2>En linea...</h2>
-  <div id="chat-display"></div>
-  <input type="text" id="chat-input">
-  <button id="chat-send">Enviar</button>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="chat.js"></script>
+  <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
+  <h3>Mensajes recibidos</h3>
+  <p id="display"></p>
 </body>
 </html>

@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
     
     console.log('** NUEVA CONEXIÓN **'.yellow);
 
-    socket.emit('message', 'Bienvenido al chat');
+    /* socket.emit('message', 'Bienvenido al chat');
     
     // Avisamos a todos los demás usuarios de que ha entrado un nuevo usuario
     socket.broadcast.emit('message', 'Un nuevo usuario se ha conectado');
@@ -66,12 +66,12 @@ app.get('/', (req, res) => {
             break;
         }
       }
-    });
+    }); */
   //-- Evento de desconexión
     socket.on('disconnect', function(){
       console.log('** CONEXIÓN TERMINADA **'.yellow);
       // Borramos al usuario de la lista de usuarios conectados
-      delete connectedUsers[socket.id];
+    /*   delete connectedUsers[socket.id]; */
     });  
   
     //-- Mensaje recibido: Hacer eco
@@ -79,10 +79,8 @@ app.get('/', (req, res) => {
       console.log("Mensaje Recibido!: " + msg.blue);
   
       //-- Reenviarlo a todos los clientes conectados
-      socket.send(msg);
+      io.send(msg);
     });
-
-
   });
   
   //-- Lanzar el servidor HTTP

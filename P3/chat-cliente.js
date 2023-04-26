@@ -12,13 +12,9 @@ socket.on("message", (msg)=>{
 
 //-- Al apretar el botón se envía un mensaje al servidor
 msg_entry.onchange = () => {
-  if (msg_entry.value){
-    if (msg_entry.value.startsWith("/")) {
-      socket.emit("command", msg_entry.value);
-    } else {
-      socket.send(msg_entry.value);
-    }
-  }
+  if (msg_entry.value)
+    socket.send(msg_entry.value);
+  
   //-- Borrar el mensaje actual
   msg_entry.value = "";
 }
