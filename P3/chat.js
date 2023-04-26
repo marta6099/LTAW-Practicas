@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
     
     console.log('** NUEVA CONEXIÓN **'.yellow);
 
-    /* socket.emit('message', 'Bienvenido al chat');
+    socket.emit('message', 'Bienvenido al chat');
     
     // Avisamos a todos los demás usuarios de que ha entrado un nuevo usuario
     socket.broadcast.emit('message', 'Un nuevo usuario se ha conectado');
@@ -53,20 +53,32 @@ app.get('/', (req, res) => {
     //Mensaje que llega al cliente
     socket.on('message', (msg) =>{
       //Debemos añadir los comandos
-      if(MessageChannel.startsWith('/')){
+      if(msg.startsWith('/')){
         //Creamos una variable que obtendra el valor de lo que va despues del /
-        const comando = message.slice(1);
+        const comando = msg.slice(1);
         switch (comando){
           case 'help':
             socket.emit('message', 'Comandos del chat disponibles: /help, /list, /hello, /date');
             break;
           case 'list':
             const num_usuarios = Object.keys(connectedUsers).length;
-            socket.emit('message','Hay ${num_usuarios} usuarios conectados');
+            socket.emit('message',`Hay ${num_usuarios} usuarios conectados`);
             break;
+          case 'hello':
+            socket.emit('message', 'Lo primero de todo, como estan los maquinas?');
+          break;
+          case 'date':
+          const date = new Date().toLocaleDateString();
+          socket.emit('message', `La fecha actual es: ${date}`);
+          break;
+        default:
+          socket.emit('message', `El comando "${command}" no es válido`);
         }
+      } else {
+         // Si el mensaje no es un comando, lo reenviamos a todos los usuarios
+        io.emit('message', message);
       }
-    }); */
+    }); 
   //-- Evento de desconexión
     socket.on('disconnect', function(){
       console.log('** CONEXIÓN TERMINADA **'.yellow);
