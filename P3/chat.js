@@ -1,31 +1,32 @@
 // Practica 3
 
 //Cargamos el modulo socket.io
-const socketServer = require('socket.io').Server;
+const socketio = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
 
+//Creamos una nueva aplicación web
+const app = express();
+
 //Declaramos el puerto
 const PUERTO = 9000;
 
-//-- Crear una nueva aplicacion web
-const app = express();
 
 //-- Crear un servidor, asosiaco a la App de express
-const server = http.Server(app);
+const server = http.createServer(app);
 
 //-- Crear el servidor de websockets asociado a un servidor http (previamente creado)
-const io = new socketServer(server);
+const io = socketio(server);
 
+// Definimos una lista de usuarios conectados
+const connectedUsers = {};
 
-//Variable usuario
-let cont_usuario = 0;
 
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-    res.send('Bienvenido a mi chat Web!!!' + '<p><a href="/chat.html">Test</a></p>');
+    res.send('Bienvenido a mi chat Web!!!' + '<p><a href="/chat.html">Pruebame</a></p>');
   });
   
   //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -40,10 +41,37 @@ app.get('/', (req, res) => {
   io.on('connect', (socket) => {
     
     console.log('** NUEVA CONEXIÓN **'.yellow);
+
+    socket.emit('message', 'Bienvenido al chat');
+    
+    // Avisamos a todos los demás usuarios de que ha entrado un nuevo usuario
+    socket.broadcast.emit('message', 'Un nuevo usuario se ha conectado');
   
-    //-- Evento de desconexión
+    //Añadimos el usuario a la lista
+    connectedUsers[socket.id] = {};
+
+    //Mensaje que llega al cliente
+    socket.on('message', (msg) =>{
+      //Debemos añadir los comandos
+      if(MessageChannel.startsWith('/')){
+        //Creamos una variable que obtendra el valor de lo que va despues del /
+        const comando = message.slice(1);
+        switch (comando){
+          case 'help':
+            socket.emit('message', 'Comandos del chat disponibles: /help, /list, /hello, /date');
+            break;
+          case 'list':
+            const num_usuarios = Object.keys(connectedUsers).length;
+            socket.emit('message','Hay ${num_usuarios} usuarios conectados');
+            break;
+        }
+      }
+    });
+  //-- Evento de desconexión
     socket.on('disconnect', function(){
       console.log('** CONEXIÓN TERMINADA **'.yellow);
+      // Borramos al usuario de la lista de usuarios conectados
+      delete connectedUsers[socket.id];
     });  
   
     //-- Mensaje recibido: Hacer eco

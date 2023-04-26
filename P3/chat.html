@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat</title>
+  <link rel="stylesheet" href="chat.css">
+  <title>Chat en linea</title>
 
   <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
   <script src="/socket.io/socket.io.js"></script>
@@ -14,9 +15,11 @@
 </head>
 
 <body>
-  <h2>Ejemplo 8: Prueba de Socket.io</h2>
-    <input id="button" type="button" value="Enviar mensaje por Websocket">
-    <h3>Mensajes recibidos</h3>
-    <p id="display"></p>
+  <h2>En linea...</h2>
+  <div id="chat-display"></div>
+  <input type="text" id="chat-input">
+  <button id="chat-send">Enviar</button>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="chat.js"></script>
 </body>
 </html>
