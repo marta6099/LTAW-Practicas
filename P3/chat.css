@@ -100,3 +100,24 @@ body {
 .chat-message.special .text {
   font-style: italic;
 }
+.chat-box {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  height: 400px;
+  overflow-y: scroll;
+}
+/* .msg {
+  background-color: #c9f3a7;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+} */
+.message-box {
+  background-color: #c9f3a7;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}

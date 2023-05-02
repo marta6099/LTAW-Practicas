@@ -52,6 +52,7 @@ app.get('/', (req, res) => {
 
     //Mensaje que llega al cliente
     socket.on('message', (msg) =>{
+      
       //Debemos añadir los comandos
       if(msg.startsWith('/')){
         //Creamos una variable que obtendra el valor de lo que va despues del /

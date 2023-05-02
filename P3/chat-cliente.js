@@ -7,7 +7,11 @@ const socket = io();
 
 
 socket.on("message", (msg)=>{
-  display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+  const messageBox = document.createElement("div");
+  messageBox.classList.add("message-box");
+  messageBox.innerHTML = `<p>${msg}</p>`;
+  display.appendChild(messageBox);
+  //display.innerHTML += '<p style="color:blue">' + msg + '</p>';
 });
 
 //-- Al apretar el botón se envía un mensaje al servidor
