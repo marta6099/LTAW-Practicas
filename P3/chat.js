@@ -21,6 +21,7 @@ const io = socketio(server);
 
 // Definimos una lista de usuarios conectados
 const connectedUsers = {};
+let typingUsers = {}; // Declaración de la variable
 
 
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
@@ -78,14 +79,43 @@ app.get('/', (req, res) => {
       } else {
          // Si el mensaje no es un comando, lo reenviamos a todos los usuarios
         io.send(msg);
+
+      const typingUserIds = Object.keys(typingUsers);
+      if (typingUserIds.length > 0) {
+        const typingUsernames = typingUserIds.map(id => connectedUsers[id].username);
+        const typingMessage = typingUsernames.join(', ') + ' están escribiendo...';
+        socket.emit('typing', typingMessage);
       }
+    }
     }); 
   //-- Evento de desconexión
     socket.on('disconnect', function(){
       console.log('** CONEXIÓN TERMINADA **'.yellow);
       // Borramos al usuario de la lista de usuarios conectados
-    /*   delete connectedUsers[socket.id]; */
-    });  
+  /*   delete connectedUsers[socket.id];
+    delete typingUsers[socket.id]; */
+     // Enviar mensaje de usuarios escribiendo actualizado
+     const typingUserIds = Object.keys(typingUsers);
+     if (typingUserIds.length > 0) {
+       const typingUsernames = typingUserIds.map(id => connectedUsers[id].username);
+       const typingMessage = typingUsernames.join(', ') + ' están escribiendo...';
+       io.emit('typing', typingMessage);
+     } else {
+       io.emit('typing', '');
+     }
+   }); 
+    // Eventos de escribir o dejar de escribir
+  socket.on('typingStart', () => {
+    typingUsers[socket.id] = true;
+
+    // Enviar mensaje de usuarios escribiendo actualizado
+    const typingUserIds = Object.keys(typingUsers);
+    if (typingUserIds.length > 0) {
+      const typingUsernames = typingUserIds.map(id => connectedUsers[id].username);
+      const typingMessage = typingUsernames.join(', ') + ' están escribiendo...';
+      io.emit('typing', typingMessage);
+    }
+  });
   
     //-- Mensaje recibido: Hacer eco
     socket.on("message", (msg)=> {
