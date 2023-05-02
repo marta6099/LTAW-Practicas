@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
   io.on('connect', (socket) => {
     
     console.log('** NUEVA CONEXIÓN **'.yellow);
-
+    
     socket.emit('message', 'Bienvenido al chat');
     
     // Avisamos a todos los demás usuarios de que ha entrado un nuevo usuario
