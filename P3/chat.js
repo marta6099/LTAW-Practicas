@@ -1,4 +1,4 @@
-// Practica 3
+// Practica 3 - Marta Garrido 
 
 //Cargamos el modulo socket.io
 const socketio = require('socket.io');
