@@ -11,7 +11,7 @@ usernameInput.onchange = () => {
   if (usernameInput.value) {
     user = usernameInput.value;
     console.log(user);
-    socket.send(user);
+    socket.send("Se ha registrado:  " + user);
   }
   usernameInput.value = "";
 }
