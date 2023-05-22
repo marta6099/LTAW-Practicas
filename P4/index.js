@@ -9,6 +9,9 @@ const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const print = document.getElementById("print");
+const nodeVersionElement = document.getElementById('nodeVersionElement');
+const electronVersionElement = document.getElementById('electronVersionElement');
+const chromeVersionElement = document.getElementById('chromeVersionElement');
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -16,6 +19,9 @@ const print = document.getElementById("print");
 info1.textContent = process.arch;
 info2.textContent = process.platform;
 info3.textContent = process.cwd();
+nodeVersionElement.textContent = process.version;
+electronVersionElement.textContent = process.versions.electron;
+chromeVersionElement.textContent = process.versions.chrome;
 
 btn_test.onclick = () => {
     display.innerHTML += "TEST! ";

@@ -9,8 +9,14 @@ const electron = require('electron');
 //Imprimimos el mensaje en la consola
 console.log("Hola desde el proceso de la web...");
 
+// Obtener las versiones
+const nodeVersion = process.version;
+const electronVersion = process.versions.electron;
+const chromeVersion = process.versions.chrome;
+
 //Variable para acceder a la ventana principal
 let win = null;
+
 
 // Cuando electron este listo
 electron.app.on('ready', () => {
@@ -25,6 +31,7 @@ electron.app.on('ready', () => {
             nodeIntegration: true,
             contextIsolation: false
         }
+        
     });
     // Para quitar el menu
     // win.setMenuBarVisibility(false)
