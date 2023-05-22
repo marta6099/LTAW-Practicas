@@ -1,8 +1,10 @@
 const electron = require('electron');
 
+
 console.log("Hola desde el proceso de la web...");
 
 //-- Obtener elementos de la interfaz
+
 const btn_test = document.getElementById("btn_test");
 const display = document.getElementById("display");
 const info1 = document.getElementById("info1");
@@ -35,3 +37,4 @@ electron.ipcRenderer.on('print', (event, message) => {
     console.log("Recibido: " + message);
     print.textContent = message;
   });
+  
