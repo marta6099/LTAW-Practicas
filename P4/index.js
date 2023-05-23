@@ -1,5 +1,5 @@
+//Fichero index.js
 const electron = require('electron');
-
 
 console.log("Hola desde el proceso de la web...");
 
@@ -26,7 +26,7 @@ const usernameInput = document.getElementById("username");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
-//-- el proceso princpal
+//-- el proceso principal
 info1.textContent = process.arch;
 info2.textContent = process.platform;
 info3.textContent = process.cwd();
@@ -43,7 +43,6 @@ electron.ipcRenderer.on('informacion', (event, message) => {
   console.log("Recibido: " + message);
 });
 
-
 //-- Numero de usuarios
 electron.ipcRenderer.on('users', (event, message) => {
   console.log("Recibido: " + message);
@@ -52,13 +51,13 @@ electron.ipcRenderer.on('users', (event, message) => {
 
 //-- Mensaje recibido del proceso MAIN
 electron.ipcRenderer.on('msg_client', (event, message) => {
-    console.log("Recibido: " + message);
-    display.innerHTML += message + '</br>';
-  });
+  console.log("Recibido: " + message);
+  display.innerHTML += message + '</br>';
+});
 
 //Mensajes enviados al proceso MAIN
-  btn_test.onclick = () => {
-    console.log("Botón apretado!");
-     //-- Enviar mensaje al proceso principal
-     electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
-}
+btn_test.onclick = () => {
+  console.log("Botón apretado!");
+  //-- Enviar mensaje al proceso principal
+  electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
+};
