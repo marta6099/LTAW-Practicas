@@ -1,46 +1,45 @@
-body {
-  display: flex;
-  justify-content: column;
-  height: 100vh;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
-  flex-grow: 1;
   margin: 0;
+  padding: 20px;
+  background-color: #98e6e6; /* Color azul menta */
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centrar el texto */
+  color: white; /* Color del texto */
+}
+
+.info-container {
+  flex: 0 0 auto;
   padding: 20px;
   background-color: #f8f8f8;
   border-bottom: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.info-container {
-  flex: 1;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .container-parent {
-  flex: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container-parent input[type="button"] {
-  margin-bottom: 10px;
 }
 
 .container-parent h2,
 .container-parent h3 {
-  text-align: right;
+  text-align: center;
 }
 
 .container-parent .chat-box {
+  flex: 1 1 auto;
   max-height: 200px;
   overflow-y: auto;
   padding: 10px;
@@ -56,4 +55,12 @@ h1 {
 .container-parent .msg p {
   margin: 0;
 }
-
+/*estilo boton*/
+input[type="button"] {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #000000; /* Color de letras negras */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}

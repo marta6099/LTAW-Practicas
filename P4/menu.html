@@ -33,6 +33,9 @@
         <li>Version de Node: <span id="nodeVersionElement" class="blue"></span> </li>
         <li>Version de Chrome: <span id="electronVersionElement" class="blue"></span></li>
         <li>Version Electron: <span id="chromeVersionElement" class="blue"></span></li>
+        <div class="qr-code">
+          <img id="qrCodeImage" src="" alt="QR Code">
+        </div>
     </ul>
   </div>
   <div class="container-parent">
@@ -46,5 +49,14 @@
       </div>
     </div>
   </div>
+  <script>
+    const qrCodeImage = document.getElementById('qrCodeImage');
+  
+    // Recibir los datos del código QR
+    window.api.receive('qrCodeData', (qrCodeData) => {
+      qrCodeImage.src = qrCodeData;
+    });
+  </script>
 </body>
+
 </html>

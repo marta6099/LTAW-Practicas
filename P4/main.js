@@ -5,6 +5,7 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 const colors = require('colors');
+const qrcode = require('qrcode');
 
 // Puerto
 const PUERTO = 9000;
@@ -96,13 +97,28 @@ electron.app.on('ready', () => {
   });
 
   win.loadFile("menu.html");
+  // Generar código QR con la dirección IP del servidor
+  const serverAddress = 'http://localhost:9000';
+  qrcode.toDataURL(serverAddress, (err, qrCodeData) => {
+    if (err) {
+      console.error("Error al generar el código QR:", err);
+    } else {
+      win.webContents.send('qrCodeData', qrCodeData);
+    }
+  });
 
 /*   win.on('ready-to-show', () => {
     win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
     console.log("entras?")
   }); */
-});
 
+  // Obtener y enviar la dirección IP del servidor
+  const serverIp = require('ip').address();
+  win.webContents.send('serverIp', serverIp);
+
+  // Enviar el número de usuarios conectados a la ventana
+  win.webContents.send('users', Object.keys(connectedUsers).length);
+});
 // Escuchando en el puerto especificado
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
