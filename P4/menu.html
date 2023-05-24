@@ -15,7 +15,7 @@
     <!-- Cargar el proceso asociado a esta página -->
     <script src="index.js" defer></script>
     <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
 
     <title>Mi APP </title>
 </head>
@@ -24,27 +24,24 @@
     <!-- <img src="logo-urjc.png" alt="Logo-URJC" width=150px> -->
 
     <hr>
+    <div class="info-container">
     <h2>Información:</h2>
     <ul>
         <li>Arquitectura: <span id="info1" class="blue"></span> </li>
         <li>Plataforma: <span id="info2" class="blue"></span></li>
-        <li>Diretorio: <span id="info3" class="blue"></span></li>
+        <li>Diretorio: <span id="info3" class="blue"></span></li> <br>
         <li>Version de Node: <span id="nodeVersionElement" class="blue"></span> </li>
         <li>Version de Chrome: <span id="electronVersionElement" class="blue"></span></li>
         <li>Version Electron: <span id="chromeVersionElement" class="blue"></span></li>
     </ul>
-
+  </div>
     <hr>
-    <p>Mensajes enviados desde el proceso main:</p>
-    <p>Print:  <span id='print' class="red"></span> </p>
-    <p>   <input type="button" value="Test" id="btn_test"> </p>
-   <p>Display:</p>
-    <p id="display"></p>
+    <p>   <input type="button" value="Prueba" id="btn_test"> </p>
     <h2>En linea...</h2>
     <h3>Mensajes recibidos</h3>
     <div class = "chat-box">
       <div class ="msg">
-        <p id="display"></p>
+        <p id="displays"></p>
       </div>
     </div>
     

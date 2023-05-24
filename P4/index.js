@@ -12,8 +12,6 @@ const display = document.getElementById("display");
 const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
-//
-const print = document.getElementById("print");
 
 //Veriones
 const nodeVersionElement = document.getElementById('nodeVersionElement');
@@ -23,6 +21,10 @@ const chromeVersionElement = document.getElementById('chromeVersionElement');
 //Chat
 const msg_entry = document.getElementById("msg_entry");
 const usernameInput = document.getElementById("username");
+//
+const num_usuarios = document.getElementById("users");
+const dir_ip = document.getElementById("ip");
+const mensajes = document.getElementById("displays");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -41,18 +43,21 @@ let user = "";
 
 electron.ipcRenderer.on('informacion', (event, message) => {
   console.log("Recibido: " + message);
+
 });
 
 //-- Numero de usuarios
 electron.ipcRenderer.on('users', (event, message) => {
   console.log("Recibido: " + message);
   num_usuarios.textContent = message;
+  mensajes.innerHTML = msg + '/chat.html';
+  mensajes.href = msg + '/chat.html';
 });
 
 //-- Mensaje recibido del proceso MAIN
 electron.ipcRenderer.on('msg_client', (event, message) => {
   console.log("Recibido: " + message);
-  display.innerHTML += message + '</br>';
+  displays.innerHTML += message + '</br>';
 });
 
 //Mensajes enviados al proceso MAIN
@@ -61,3 +66,4 @@ btn_test.onclick = () => {
   //-- Enviar mensaje al proceso principal
   electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
 };
+
