@@ -104,6 +104,8 @@ app.get('/', (req, res) => {
      } else {
        io.emit('typing', '');
      }
+    // Avisamos a todos los demás usuarios de que ha entrado un nuevo usuario
+    io.emit('message', 'Un usuario se ha desconectado');
    }); 
     // Eventos de escribir o dejar de escribir
   socket.on('typingStart', () => {
