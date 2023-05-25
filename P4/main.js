@@ -5,7 +5,7 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 const colors = require('colors');
-
+const ip = require("ip");
 
 // Puerto
 const PUERTO = 9000;
@@ -97,9 +97,6 @@ electron.app.on('ready', () => {
   });
 
   win.loadFile("menu.html");
-  // Generar código QR con la dirección IP del servidor
-  const serverAddress = 'http://localhost:9000';
-
 
 /*   win.on('ready-to-show', () => {
     win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
@@ -107,20 +104,22 @@ electron.app.on('ready', () => {
   }); */
 
   // Obtener y enviar la dirección IP del servidor
-  const serverIp = require('ip').address();
-  win.webContents.send('serverIp', serverIp);
-
+  win.on('ready-to-show',() =>{
+ /*  const serverIp = require('ip').address(); */
+  win.webContents.send('serverIp', ip.address());
+  });
 /*   // Enviar el número de usuarios conectados a la ventana
   win.webContents.send('users', Object.keys(connectedUsers).length); */
+  electron.ipcMain.handle('test', (event, msg) => {
+    console.log("-> Mensaje: " + msg);
+    electron.BrowserWindow.getAllWindows().forEach(window => {
+      window.webContents.send('test', msg);
+      io.send(msg);
+    });
+  });
 });
 // Escuchando en el puerto especificado
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
 
-electron.ipcMain.handle('test', (event, msg) => {
-  console.log("-> Mensaje: " + msg);
-  electron.BrowserWindow.getAllWindows().forEach(window => {
-    window.webContents.send('test', msg);
-    io.send(msg);
-  });
-});
+

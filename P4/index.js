@@ -1,5 +1,6 @@
 //Fichero index.js
 const electron = require('electron');
+const ip = require('ip');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -12,6 +13,8 @@ const btn_test = document.getElementById("btn_test");
 const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
+// Puerto
+const PUERTO = 9000;
 
 //Veriones
 const nodeVersionElement = document.getElementById('nodeVersionElement');
@@ -19,12 +22,12 @@ const electronVersionElement = document.getElementById('electronVersionElement')
 const chromeVersionElement = document.getElementById('chromeVersionElement');
 const qrcode = require('qrcode');
 //Chat
-const msg_entry = document.getElementById("msg_entry");
-const usernameInput = document.getElementById("username");
+/* const msg_entry = document.getElementById("msg_entry");
+const usernameInput = document.getElementById("username"); */
 //
 const num_usuarios = document.getElementById("users");
-const dir_ip = document.getElementById("ip");
-const mensajes = document.getElementById("displays");
+const ipAddressElement = document.getElementById('ip-address');
+/* const mensajes = document.getElementById("displays"); */
 const code = document.getElementById("qrcode");
 
 //-- Acceder a la API de node para obtener la info
@@ -55,6 +58,15 @@ electron.ipcRenderer.on('users', (event, message) => {
   num_usuarios.textContent = message;
   /* mensajes.innerHTML = msg + '/chat.html';
   mensajes.href = msg + '/chat.html'; */
+});
+//--IP
+electron.ipcRenderer.on('serverIp', (event, message) => {
+  const url = `http://${message}:${PUERTO}`;
+  ipAddressElement.textContent = message;
+  console.log("entras?")
+ /*  qrcode.toDataURL(url, function(err, qrUrl) {
+    code.src = qrUrl;
+  }); */
 });
 
 //-- Mensaje recibido del proceso MAIN

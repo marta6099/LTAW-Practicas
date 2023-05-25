@@ -7,7 +7,7 @@
 
     <!-- Permitir sólo scripts y ficheros de la máquina local -->
     <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data:;" />
 
     <!-- Hoja de estilo de la interfaz -->
     <link rel="stylesheet" href="style.css">
@@ -34,7 +34,7 @@
         <li>Version de Chrome: <span id="electronVersionElement" class="blue"></span></li>
         <li>Version Electron: <span id="chromeVersionElement" class="blue"></span></li>
         <li>Número de usuarios conectados: <span id="users" class="blue"></span></li>
-        <li>Dirección ip:<span id="ip" class="blue"></span> </li>
+        <li>Dirección ip:<span id="ip-address" class="blue"></span> </li>
         <div class="qr-code">
           <img id="qrcode" src="" alt="QR Code">
         </div>
