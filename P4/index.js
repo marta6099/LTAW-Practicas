@@ -7,7 +7,7 @@ console.log("Hola desde el proceso de la web...");
 
 const btn_test = document.getElementById("btn_test");
 
-const display = document.getElementById("display");
+//const display = document.getElementById("display");
 //Arquitectura
 const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
@@ -17,7 +17,7 @@ const info3 = document.getElementById("info3");
 const nodeVersionElement = document.getElementById('nodeVersionElement');
 const electronVersionElement = document.getElementById('electronVersionElement');
 const chromeVersionElement = document.getElementById('chromeVersionElement');
-
+const qrcode = require('qrcode');
 //Chat
 const msg_entry = document.getElementById("msg_entry");
 const usernameInput = document.getElementById("username");
@@ -25,6 +25,7 @@ const usernameInput = document.getElementById("username");
 const num_usuarios = document.getElementById("users");
 const dir_ip = document.getElementById("ip");
 const mensajes = document.getElementById("displays");
+const code = document.getElementById("qrcode");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -35,10 +36,12 @@ info3.textContent = process.cwd();
 nodeVersionElement.textContent = process.version;
 electronVersionElement.textContent = process.versions.electron;
 chromeVersionElement.textContent = process.versions.chrome;
+//
+url = "http://localhost:9000/"
+qrcode.toDataURL(url, function(err, url){
+  code.src = url;
+  });
 
-//-- Crear un websocket. Se establece la conexión con el servidor
-/* const io = require('socket.io-client');
-const socket = io('http://localhost:9000'); */
 let user = "";
 
 electron.ipcRenderer.on('informacion', (event, message) => {
@@ -50,8 +53,8 @@ electron.ipcRenderer.on('informacion', (event, message) => {
 electron.ipcRenderer.on('users', (event, message) => {
   console.log("Recibido: " + message);
   num_usuarios.textContent = message;
-  mensajes.innerHTML = msg + '/chat.html';
-  mensajes.href = msg + '/chat.html';
+  /* mensajes.innerHTML = msg + '/chat.html';
+  mensajes.href = msg + '/chat.html'; */
 });
 
 //-- Mensaje recibido del proceso MAIN
