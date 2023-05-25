@@ -55,9 +55,9 @@ app.get('/', (req, res) => {
     socket.on('message', (msg) =>{
       
       //Debemos añadir los comandos
-      if(msg.startsWith('/')){
+      if(msg.split('/')[1]){
         //Creamos una variable que obtendra el valor de lo que va despues del /
-        const comando = msg.slice(1);
+        const comando = msg.split("/")[1];
         switch (comando){
           case 'help':
             socket.send('Comandos del chat disponibles: /help, /list, /hello, /date');
@@ -74,7 +74,8 @@ app.get('/', (req, res) => {
           socket.send(`La fecha actual es: ${date}`);
           break;
         default:
-          socket.send(`El comando "${command}" no es válido`);
+          socket.send(`El comando "${comando}" no es válido`);
+          break;
         }
       } else {
          // Si el mensaje no es un comando, lo reenviamos a todos los usuarios
