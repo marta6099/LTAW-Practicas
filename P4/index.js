@@ -21,6 +21,7 @@ const nodeVersionElement = document.getElementById('nodeVersionElement');
 const electronVersionElement = document.getElementById('electronVersionElement');
 const chromeVersionElement = document.getElementById('chromeVersionElement');
 const qrcode = require('qrcode');
+console.log(ip.address());
 //Chat
 /* const msg_entry = document.getElementById("msg_entry");
 const usernameInput = document.getElementById("username"); */
@@ -40,10 +41,7 @@ nodeVersionElement.textContent = process.version;
 electronVersionElement.textContent = process.versions.electron;
 chromeVersionElement.textContent = process.versions.chrome;
 //
-url = "http://localhost:9000/"
-qrcode.toDataURL(url, function(err, url){
-  code.src = url;
-  });
+
 
 let user = "";
 
@@ -61,12 +59,16 @@ electron.ipcRenderer.on('users', (event, message) => {
 });
 //--IP
 electron.ipcRenderer.on('serverIp', (event, message) => {
-  const url = `http://${message}:${PUERTO}`;
-  ipAddressElement.textContent = message;
+  const url = `http://${message}:${PUERTO}/chat.html`;
+  ipAddressElement.textContent = url;
   console.log("entras?")
- /*  qrcode.toDataURL(url, function(err, qrUrl) {
+  qrcode.toDataURL(url, function(err, qrUrl) {
+    if (err) {
+      console.error(err);
+      return;
+    }
     code.src = qrUrl;
-  }); */
+});
 });
 
 //-- Mensaje recibido del proceso MAIN
