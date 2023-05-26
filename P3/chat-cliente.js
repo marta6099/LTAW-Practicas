@@ -3,6 +3,9 @@ const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
 const usernameInput = document.getElementById("username");
 
+//Constante sonido
+let audio = new Audio('sonido.mp3');
+
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
 let user = "";
@@ -61,11 +64,14 @@ socket.on("message", (msg)=>{
 
 //-- Al apretar el botón se envía un mensaje al servidor
 msg_entry.onchange = () => {
-  
-  if (msg_entry.value && user)
+  if (msg_entry.value) {
+    if (!user) {
+      user = "Anónimo";
+    }
     socket.send(`${user}: ${msg_entry.value}`);
-    //socket.send(msg_entry.value);
-  
+    audio.play();
+  }
+
   //-- Borrar el mensaje actual
   msg_entry.value = "";
 }
